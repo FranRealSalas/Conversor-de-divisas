@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de divisas</title>
+    <link rel="stylesheet" href="src/estilo.css">
+</head>
+<body>
+    <div class="imagen-div">
+    </div>
+    
+    <div class="texto-div">
+        <h1>Conversor de divisas</h1>
+
+        <h2 class="titulo-fecha-base"></h2>
+        
+        <div id="inputs-datos">
+            <input type="date" id="fecha-elegida">
+            
+            <select id="moneda-base">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="AUD">AUD</option>
+                <option value="BGN">BGN</option>
+                <option value="BRL">BRL</option>
+            </select>
+        </div>
+        
+        <div id="listas-usadas">
+            <ul id="lista-monedas-nombres" class="oculto">
+            </ul>
+            
+            <ul id="lista-monedas">
+            </ul>
+            
+            <ul id="errores" class="oculto">
+            </ul>
+        </div>
+        
+        <button type="submit" id="boton-aceptar">Aceptar</button>
+        <button id="mostrar-monedas">Mostrar monedas</button>
+    </div>
+        
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="src/index.js"></script>
+</body>
+</html>
