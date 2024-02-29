@@ -7,7 +7,7 @@ const monedaBase = document.querySelector('#moneda-base');
 const botonMostrarMonedas = document.querySelector('#mostrar-monedas');
 const listaMonedasNombre = document.querySelector('#lista-monedas-nombres');
 const listaErrores = document.querySelector('#errores');
-const tituloFechaBase = document.querySelector('.titulo-fecha-base')
+const tituloFechaBase = document.querySelector('.titulo-fecha-base');
  
 //Validaciones
 let fechaActual= new Date().toJSON().slice(0,10);
@@ -18,7 +18,7 @@ function validarFecha(fecha){
         return "hubo error";
     }
     else if(fecha === ""){
-        return "hubo error"
+        return "hubo error";
     }
 
     else{

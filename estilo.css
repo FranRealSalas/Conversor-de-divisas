@@ -6,7 +6,6 @@ body{
     margin: 0;
 }
 
-
 .imagen-div{
     background-image: url(../img/dolares.png);
     background-position: center;
@@ -14,7 +13,6 @@ body{
     filter: blur(2px);
     height: 100vh;
     width: 100vw;
-
 }
 
 .texto-div{
