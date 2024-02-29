@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de divisas</title>
-    <link rel="stylesheet" href="src/estilo.css">
+    <link href="./img/icono-dolares.png" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <div class="imagen-div">
@@ -16,8 +17,10 @@
         <h2 class="titulo-fecha-base"></h2>
         
         <div id="inputs-datos">
+            <label for="#fecha-elegida">Elija una fecha</label>
             <input type="date" id="fecha-elegida">
             
+            <label for="#moneda-base">Elija una base</label>
             <select id="moneda-base">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
@@ -42,7 +45,7 @@
         <button id="mostrar-monedas">Mostrar monedas</button>
     </div>
         
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="src/index.js"></script>
 </body>
 </html>

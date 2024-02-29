@@ -1,0 +1,106 @@
+html{
+    overflow: hidden;
+}
+
+body{
+    margin: 0;
+}
+
+
+.imagen-div{
+    background-image: url(../img/dolares.png);
+    background-position: center;
+    background-size: cover;
+    filter: blur(2px);
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.texto-div{
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90em;
+    padding: 3em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+h1{
+    font-size: 36px;
+}
+
+#listas-usadas{
+    display: flex;
+}
+
+.oculto{
+    display: none;
+}
+
+#errores li{
+    background-color: red;
+}
+
+#inputs-datos{
+    display: flex;
+    flex-direction: column;
+    gap: .7em;
+}
+
+#moneda-base{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    width: fit-content;
+    display: flex;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+#moneda-base option{
+    background-color: black;
+    color: white;
+}
+
+#fecha-elegida{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    flex-direction: column;
+    width: fit-content;
+    display: flex;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+#fecha-elegida[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+    margin-left: .2em;
+}
+
+#boton-aceptar{
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+#mostrar-monedas{
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+}

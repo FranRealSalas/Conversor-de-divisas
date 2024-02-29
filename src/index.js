@@ -7,6 +7,7 @@ const monedaBase = document.querySelector('#moneda-base');
 const botonMostrarMonedas = document.querySelector('#mostrar-monedas');
 const listaMonedasNombre = document.querySelector('#lista-monedas-nombres');
 const listaErrores = document.querySelector('#errores');
+const tituloFechaBase = document.querySelector('.titulo-fecha-base')
  
 //Validaciones
 let fechaActual= new Date().toJSON().slice(0,10);
@@ -15,6 +16,9 @@ fechaElegida.max = fechaActual;
 function validarFecha(fecha){
     if(fecha > fechaActual){
         return "hubo error";
+    }
+    else if(fecha === ""){
+        return "hubo error"
     }
 
     else{
@@ -25,29 +29,34 @@ function validarFecha(fecha){
 //Programa
 botonAceptar.onclick = function(event){
     if(validarFecha(fechaElegida.value)===""){
-        ocultarElemento(listaErrores);
-        mostrarElemento(listaMonedas)
+        mostrarOcultarElemento(listaErrores,"ocultar");
+        mostrarOcultarElemento(listaMonedas, "mostrar");
 
         listaMonedas.innerHTML = "";
         
         fetch(`${URL}/${fechaElegida.value}?from=${monedaBase.value}`)
-        .then(respuesta => respuesta.json())
-        .then(data => {
-            $(".titulo-fecha-base").text(`Cambios a la fecha ${fechaElegida.value} en base ${monedaBase.value}`);
-            Object.keys(data.rates).forEach(moneda => {
-                let elemento = document.createElement('li');
-                elemento.textContent = `${moneda}: ${data.rates[moneda]}`;
-                $(listaMonedas).append(elemento);
+            .then(respuesta => respuesta.json())
+            .then(data => {
+                if(fechaElegida.value != ""){
+                    tituloFechaBase.textContent= `Cambios a la fecha ${fechaElegida.value} en base ${monedaBase.value}`;
+                    mostrarOcultarElemento(tituloFechaBase,"mostrar");
+                }
+                Object.keys(data.rates).forEach(moneda => {
+                    let elemento = document.createElement('li');
+                    elemento.textContent = `${moneda}: ${data.rates[moneda]}`;
+                    $(listaMonedas).append(elemento);
             })
         })
     }
     else{
         listaErrores.innerHTML = "";
-        mostrarElemento(listaErrores);
         const $error = document.createElement('li');
         $error.innerText = "Debe ingresar una fecha valida";
         listaErrores.appendChild($error);
-        ocultarElemento(listaMonedas);
+        mostrarOcultarElemento(tituloFechaBase,"ocultar");
+        mostrarOcultarElemento(listaMonedas,"ocultar");
+        mostrarOcultarElemento(listaErrores,"mostrar");
+        
     }
 }
 
@@ -63,20 +72,21 @@ fetch(`${URL}/currencies`)
 
 botonMostrarMonedas.onclick = function(event){
     if(listaMonedasNombre.classList.contains("oculto")){
-        mostrarElemento(listaMonedasNombre);
+        mostrarOcultarElemento(listaMonedasNombre,"mostrar");
         botonMostrarMonedas.innerHTML = "Ocultar monedas";
     }
     else{
-        ocultarElemento(listaMonedasNombre);
+        mostrarOcultarElemento(listaMonedasNombre,"ocultar");
         botonMostrarMonedas.innerHTML = "Mostrar monedas";
     }
 }
 
 //ocultar elementos
-function ocultarElemento(elemento){
-    elemento.classList.add("oculto");
-}
-
-function mostrarElemento(elemento){
-    elemento.classList.remove("oculto");
+function mostrarOcultarElemento(elemento, accion){
+    if(accion==="ocultar"){
+        elemento.classList.add("oculto");
+    }
+    else if(accion==="mostrar"){
+        elemento.classList.remove("oculto");
+    }
 }
