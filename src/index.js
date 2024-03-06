@@ -10,32 +10,40 @@ const listaErrores = document.querySelector('#errores');
 const tituloFechaBase = document.querySelector('.titulo-fecha-base');
  
 //Validaciones
-let fechaActual= new Date().toJSON().slice(0,10);
+let fechaActual = new Date().toJSON().slice(0,10);
 fechaElegida.max = fechaActual;
 
 function validarFecha(fecha){
+    console.log(fecha)
     if(fecha > fechaActual){
         return "hubo error";
     }
     else if(fecha === ""){
         return "hubo error";
     }
-
     else{
         return "";
     }
 }
+
+//Busca informacion
+function buscarValoresMonedas(){
+    return  fetch(`${URL}/${fechaElegida.value}?from=${monedaBase.value}`)
+                .then(respuesta => respuesta.json())
+                .then(data => data)
+}
+
 
 //Programa
 botonAceptar.onclick = function(event){
     if(validarFecha(fechaElegida.value)===""){
         mostrarOcultarElemento(listaErrores,"ocultar");
         mostrarOcultarElemento(listaMonedas, "mostrar");
-
+        listaErrores.innerHTML = "";
         listaMonedas.innerHTML = "";
+        const valoresMonedas = buscarValoresMonedas();
         
-        fetch(`${URL}/${fechaElegida.value}?from=${monedaBase.value}`)
-            .then(respuesta => respuesta.json())
+        valoresMonedas
             .then(data => {
                 if(fechaElegida.value != ""){
                     tituloFechaBase.textContent= `Cambios a la fecha ${fechaElegida.value} en base ${monedaBase.value}`;
@@ -60,8 +68,16 @@ botonAceptar.onclick = function(event){
     }
 }
 
-fetch(`${URL}/currencies`)
-    .then(respuesta => respuesta.json())
+function buscarNombresMonedas(){
+    return  fetch(`${URL}/currencies`)
+                .then(respuesta => respuesta.json())
+                .then(data => data)
+}
+
+
+const nombresMonedas = buscarNombresMonedas();
+
+nombresMonedas
     .then(data => {
         Object.keys(data).forEach(moneda => {
             let elemento = document.createElement('li');
